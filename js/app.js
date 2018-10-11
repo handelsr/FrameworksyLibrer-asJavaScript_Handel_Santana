@@ -6,6 +6,8 @@ totalFilas = 5
 totalColumnas = 7
 bloqueo = 0
 var data = [];
+var itemDiv;
+var arrayDiv = [];
 
 var juegoDulces = {
     init: function () {
@@ -161,6 +163,86 @@ var juegoDulces = {
                 numImg++;
             }
             num++;
+        }
+    },
+    resetDiv: function () {
+        setTimeout(function () {
+            var col = new juegoDulces.obtenerColumnas;
+            var num = 1;
+            var numImg = 1;
+            for (var i = 0; i <= totalColumnas; i++) {
+                var num2 = 1;
+                for (var ii = 0; ii < totalFilas; ii++) {
+                    var nuevoDiv = $(col[i])[ii];
+                    $(nuevoDiv).attr("id", "item-" + numImg + " img-" + num2);
+                    $(nuevoDiv).find("img").attr("class", "item-" + numImg);
+                    num2++;
+                    numImg++;
+                }
+                num++;
+            }
+            //console.log("Ejecutado ResetDivs");
+            juegoDulces.scanRepetidosCol();
+            juegoDulces.scanRepetidosFil();
+            if (data.length != 0) {
+                setTimeout(function () {
+                    juegoDulces.animacionAcertar();
+                }, 800);
+            }
+            bloqueo = 0;
+        }, 800);
+    },
+    agregarDiv: function () {
+        bloqueo = 1;
+        setTimeout(function () {
+            var imagen = new juegoDulces.imagenes
+            var datos = arrayDiv;
+            for (var i = 0; i < datos.length; i++) {
+                var id = $(datos[i].obj)[0].id;
+                var src = imagen[Math.floor(Math.random() * imagen.total)];
+                var divEliminado = $(datos[i].obj).detach();
+                var divNuevo = $(divEliminado)[0];
+
+                $(divNuevo).find("img").attr("src", src);
+                $(divNuevo).attr("id", id);
+                $(datos[i].clase).prepend(divNuevo);
+                $("[id*='" + id + "']").show('bounce', 400, 'slow');
+            }
+            arrayDiv = [];
+            //console.log("Ejecutado Divs Nuevos");
+            juegoDulces.resetDiv();
+        }, 1000);
+
+    },
+    animacionAcertar: function () {
+        var array
+        var claseCol
+        var cajaDulce
+
+        if (data.length != 0) {
+            for (var i = 0; i < data.length; i++) {
+                switch (data[i].obj) {
+                    case "Col":
+                        objeto = new this.obtenerColumnas;
+                        break;
+                    case "Fil":
+                        objeto = new this.obtenerFilas;
+                        break;
+                    default:
+                        console.log("Error en el Objeto - animacionAcertar");
+                }
+
+                for (var n = 0; n < data[i].arrays.length; n++) {
+                    $(data[i].colFil[data[i].arrays[n]]).hide("pulsate", 400, function () { });
+                    cajaDulce = $(data[i].colFil[data[i].arrays[n]]);
+                    claseCol = "." + $(data[i].colFil[data[i].arrays[n]])[0].parentNode.className;
+                    itemDiv = { obj: $(data[i].colFil[data[i].arrays[n]]), clase: claseCol };
+                    arrayDiv.push(itemDiv);
+                }
+                $("#score-text").html(data[i].puntos);
+            }
+            data = [];
+            juegoDulces.agregarDiv();
         }
     },
 }

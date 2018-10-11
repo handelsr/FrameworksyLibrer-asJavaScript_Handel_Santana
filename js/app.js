@@ -265,13 +265,6 @@ var juegoDulces = {
                     data.push(item);
                     //this.animacionAcertar([0,1,2,3,4], colDiv[i], objeto, i, puntuacion);
 
-                } else if ($(col[i][0]).attr("src") == imagen[img] && $(col[i][1]).attr("src") == imagen[img] && $(col[i][2]).attr("src") == imagen[img] && $(col[i][3]).attr("src") == imagen[img]) {
-
-                    puntuacion = puntuacion + 4;
-                    item = { arrays: [0, 1, 2, 3], colFil: colDiv[i], obj: objeto, item: i, puntos: puntuacion };
-                    data.push(item);
-                    //this.animacionAcertar([0,1,2,3], colDiv[i], objeto, i, puntuacion);
-
                 } else if ($(col[i][1]).attr("src") == imagen[img] && $(col[i][2]).attr("src") == imagen[img] && $(col[i][3]).attr("src") == imagen[img] && $(col[i][4]).attr("src") == imagen[img]) {
 
                     puntuacion = puntuacion + 4;
@@ -292,13 +285,6 @@ var juegoDulces = {
                     item = { arrays: [1, 2, 3], colFil: colDiv[i], obj: objeto, item: i, puntos: puntuacion };
                     data.push(item);
                     //this.animacionAcertar([1,2,3], colDiv[i], objeto, i, puntuacion);
-
-                } else if ($(col[i][2]).attr("src") == imagen[img] && $(col[i][3]).attr("src") == imagen[img] && $(col[i][4]).attr("src") == imagen[img]) {
-
-                    puntuacion = puntuacion + 3;
-                    item = { arrays: [2, 3, 4], colFil: colDiv[i], obj: objeto, item: i, puntos: puntuacion };
-                    data.push(item);
-                    //this.animacionAcertar([2,3,4], colDiv[i], objeto, i, puntuacion);
 
                 } else {
                     //console.log("Opcion no aplicada - Columna");

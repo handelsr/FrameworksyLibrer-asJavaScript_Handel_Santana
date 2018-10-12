@@ -78,6 +78,7 @@ var juegoDulces = {
       //http://jquerytimer.com/
       duration: '2m',
       format: '%M:%S',
+      countdown: true,
       callback: function(){
         juegoActivo = 2;
         juegoDulces.terminarJuego();
